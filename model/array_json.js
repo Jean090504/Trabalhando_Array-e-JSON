@@ -235,11 +235,63 @@ const cadastroProdutos = () =>{
         }
     ]
 
-    produtos.cor.marca.forEach( (itemProduto)=>{
-        console.log(`Produto: ${itemProduto.nome_produto}`)
+    //Percorre o objeto de produto para trazer os dados de cada produto
+    produtos.forEach((itemProdutos) => {
+        console.log(`\nProduto: ${itemProdutos.nome_produto}`)
+        console.log(`\nDescrição: ${itemProdutos.descricao}`)
+        console.log(`\nQuantidade disponível: ${itemProdutos.quantidade_disponivel} \n`)
 
-        itemProduto.cor.forEach()
+        console.log('---------------------------')
+        
+        //Percorre o objeto de marca dentro de cada produto, para trazer as marcas
+        itemProdutos.marca.forEach((itemMarca) => {
+            console.log(`Marca: ${itemMarca}`)
+        })
+
+        console.log('---------------------------')
+
+        //Percorre o objeto cor dentro de cada produto, para trazer as cores
+        itemProdutos.cor.forEach((itemCor) => {
+            console.log(`Cor disponível: ${itemCor.nome_cor}`)
+        })
+
+        console.log('---------------------------')
+
+        console.log(`Valor do produto: ${itemProdutos.valor}`)
+
+        console.log('---------------------------')
     })
+
+    //Pesquisando um produto pelo nome
+    let nome = 'Monitor'
+    console.log(`Produto encontrado: `)
+
+    produtos.forEach((itemProduto) =>{
+        if(String(itemProduto.nome_produto).toLocaleUpperCase() == String(nome).toLocaleUpperCase()){
+            console.log(itemProduto)
+        }
+
+    })
+
+    //Pesquisando produtos pela cor
+    let corBusca = 'Branca'
+    console.log(`\n--- Pesquisando produtos com a cor: ${corBusca} ---`)
+    let status = false
+
+    
+    produtos.forEach((itemProduto) =>{
+        itemProduto.cor.forEach((itemCor) =>{
+            if (String(itemCor.nome_cor).toUpperCase() == String(corBusca).toUpperCase()) {
+                console.log(itemProduto)
+                status = true
+            }
+        })
+    })
+
+    if(!status)
+        console.log('Nenhum produto encontrado com essa cor.')
+    
+
 }
 
 cadastroProdutos()
